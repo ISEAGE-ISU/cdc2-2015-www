@@ -1,0 +1,122 @@
+#nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+  overflow: hidden;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#nav li {
+  float: left;
+}
+
+#nav a:link, a:visited {
+  display: block;
+  width: 170px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #a5a92d;
+  text-align: center;
+  padding: 9px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#nav a:hover, a:active {
+  background-color: #563312;
+}
+
+.top h1 {
+  text-align: center;
+  color: #d6d6d6;
+  font-size: 46px;
+}
+
+body {
+  background-color: #424242;
+}
+
+.left {
+  float: left;
+  border: solid;
+  padding: 10px;
+  border-color: #a5a92d;
+  border-width: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 14%;
+  height: 70%;
+}
+
+.left ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+  overflow: hidden;
+}
+
+.left a:link, a:visited {
+  display: block;
+  width: 150px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #a5a92d;
+  text-align: center;
+  padding: 4px;
+  text-decoration: none;
+}
+
+.left a:hover, a:active {
+  background-color: #563312;
+}
+
+.center {
+  border-width: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 65%;
+  height: 70%;
+}
+
+.right {
+  float: right;
+  border: solid;
+  border-color: #a5a92d;
+  border-width: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 5%;
+  height: 70%;
+}
+
+#sections .item {
+  margin: 3px;
+}
+
+#sections .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#one {
+  background: url('images/fountain.jpg') no-repeat top;
+  height: 990px;
+}
+
+#two {
+  background: url('images/city_hall.jpg') no-repeat top;
+  height: 972;
+}
+
+#three {
+  background: url('images/penn_paper.jpg') no-repeat top;
+  height: 1594px;
+}
+
+#four {
+  background: url('images/hall.jpg') no-repeat top;
+  height: 1704px;
+}
