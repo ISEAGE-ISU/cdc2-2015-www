@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0px;
   overflow: hidden;
-  position: fixed;
+  position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -26,6 +26,37 @@
 
 #nav a:hover, a:active {
   background-color: #563312;
+}
+
+#nav2 ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+  overflow: hidden;
+}
+
+#nav2 li {
+  float: left;
+}
+
+#nav2 a:link, a:visited {
+  display: block;
+  width: 100x;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #FFCC00;
+  text-align: center;
+  padding: 9px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#nav2 a:visited {
+  background-color: #FFCC00;
+}
+
+#nav2 a:hover, a:active {
+  background-color: #FFFF00;
 }
 
 .top h1 {
@@ -123,9 +154,14 @@ body {
 #account {
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+  width: 55%;
   height: 70%;
   border: solid;
   padding 20px;
   color: yellow;
+  padding: 30px;
+}
+
+#account iframe {
+ text-color: yellow;
 }

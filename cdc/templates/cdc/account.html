@@ -24,6 +24,17 @@
     </div>
     <br/><br/>
     <div id="account">
-        Welcome {{ user.company }}!
+        <h2>Welcome {{ user }}!</h2>
+        <div id="nav2">
+        <ul>
+            <li><a href="?page=upload">Upload Documentation</a></li>
+            <li><a href="?page=flags">Flags & Warnings</a></li>
+            <li><a href="?page=filings">Recent Filings</a></li>
+            <li><a href="?page=reports">Reports</a></li>
+        </ul>
+        </div>
+        {% if page %}<br/>
+        <iframe src="{{ page }}" width="500" height="200" seamless></iframe>
+        {% endif %}
     </div>
 </body>

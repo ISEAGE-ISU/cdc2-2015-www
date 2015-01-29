@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from models import SiteUser
+from django.shortcuts import render, render_to_response
+from models import SiteUser, LoginSession
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
+from .forms import UploadFileForm
 
 def index(request):
   if request.GET.get('logout', False):
@@ -26,8 +27,15 @@ def login(request):
         siteuser = SiteUser.objects.get(company=company, user=User.objects.get(username=account))
         # if the user supplied the correct password
         if siteuser.user.check_password(pin):
-          context = { 'user' : siteuser }
-          return render(request, 'cdc/account.html', context)
+          try:
+            token = (LoginSession.objects.all().order_by('pk').reverse()[0].pk + 19) * 14123
+          except IndexError:
+            token = 19 * 14123
+          session = LoginSession(token=token, user=siteuser.user.username)
+          session.save()
+          response = HttpResponseRedirect('home')
+          response.set_cookie('secret_token', token)
+          return response
         else:
           context = { 'error' : "The username/password combination you entered doesn't match." }
           return render(request, 'cdc/login.html', context)
@@ -41,5 +49,26 @@ def logout(request):
   return HttpResponseRedirect('../?logout=true')
 
 def account_home(request):
+  if LoginSession.objects.filter(token=request.COOKIES.get('secret_token', False)).exists():
+    session = LoginSession.objects.get(token=request.COOKIES.get('secret_token', False))
+    if User.objects.filter(username=session.user).exists():
+      user = SiteUser.objects.get(user=User.objects.get(username=session.user))
+      page = request.GET.get('page', False)
+      context = { 'user' : user.company, 'page' : page }
+      return render(request, 'cdc/account.html', context)
   return render(request, 'cdc/account.html')
 
+def upload(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'], request.POST['title'])
+            return HttpResponseRedirect('home')
+    else:
+        form = UploadFileForm()
+    return render_to_response('cdc/upload.html', {'form': form})
+
+def handle_uploaded_file(f, title):
+    with open('uploads/' + title, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
