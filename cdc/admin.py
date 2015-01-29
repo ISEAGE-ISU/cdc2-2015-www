@@ -1,3 +1,4 @@
 from django.contrib import admin
+from cdc.models import SiteUser
 
-# Register your models here.
+admin.site.register(SiteUser)

@@ -15,7 +15,7 @@
     </div>
     <div id="nav">
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="{% url 'cdc:index' %}">Home</a></li>
             <li><a href="#two">Testimonials</a></li>
             <li><a href="#three">Contact Us</a></li>
             <li><a href="#four">About</a></li>
@@ -24,6 +24,6 @@
     </div>
     <br/><br/>
     <div id="account">
-        Welcome {{ user.siteuser.company }}!
+        Welcome {{ user.company }}!
     </div>
 </body>

@@ -7,7 +7,9 @@
         Welcome to CDC!
     </title>
 </head>
-<body>
+<body>{% if script %}
+        <script>alert("You have been successfully logged out. Have a nice day!");</script>
+      {% endif %}
     <div class="top">
         <header class="">
             <h1>Welcome to CDC Title</h1>
@@ -15,7 +17,7 @@
     </div>
     <div id="nav">
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="{% url 'cdc:index' %}">Home</a></li>
             <li><a href="#two">Testimonials</a></li>
             <li><a href="#three">Contact Us</a></li>
             <li><a href="#four">About</a></li>

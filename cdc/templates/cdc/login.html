@@ -19,7 +19,7 @@
             <li><a href="#two">Testimonials</a></li>
             <li><a href="#three">Contact Us</a></li>
             <li><a href="#four">About</a></li>
-            <li><a href="#">Log In</a></li>
+            <li><a href="{% url 'cdc:login' %}">Log In</a></li>
         </ul>
     </div>
     <br/><br/>
@@ -32,11 +32,10 @@
            PIN:
            <br/><input type="password" name="pin" size="4" maxlength="4"/><br/><br/>
         <input type="submit" value="login"/>
-        <input type="hidden" name="next" value="{{ next }}"/>
-        </form>
-        {% if error %}
-        <p style="color:yellow">Your username and password didn't match. Please try again.</p>
-        {% endif %}
+        <input type="hidden" name="next" value="True"/>
+        <br/><br/>
         {{ error }}
+        </form>
+
     </div>
 </body>
