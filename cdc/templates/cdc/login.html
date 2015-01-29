@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 
 <head>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'cdc/style.css' %}">
     <title>
         Welcome to CDC!
     </title>
@@ -15,12 +15,28 @@
     </div>
     <div id="nav">
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="{% url 'cdc:index' %}">Home</a></li>
             <li><a href="#two">Testimonials</a></li>
             <li><a href="#three">Contact Us</a></li>
             <li><a href="#four">About</a></li>
-            <li><a href="login">Log In</a></li>
+            <li><a href="#">Log In</a></li>
         </ul>
     </div>
-
+    <br/><br/>
+    <div id="login">
+        <form action="{% url 'cdc:login' %}" method="post"><br/>
+           Company name:
+            <br/><input type="text" name="company"/><br/>
+           Account number:
+            <br/><input type="text" name="account"/><br/>
+           PIN:
+           <br/><input type="password" name="pin" size="4" maxlength="4"/><br/><br/>
+        <input type="submit" value="login"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+        </form>
+        {% if error %}
+        <p style="color:yellow">Your username and password didn't match. Please try again.</p>
+        {% endif %}
+        {{ error }}
+    </div>
 </body>

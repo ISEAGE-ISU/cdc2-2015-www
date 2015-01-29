@@ -101,6 +101,18 @@ body {
   height: auto;
 }
 
+#login {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  border: solid;
+  color: yellow;
+}
+
+#login form {
+  text-align: center;
+}
+
 #one {
   background: url('images/fountain.jpg') no-repeat top;
   height: 990px;

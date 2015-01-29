@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<meta charset="UTF-8">
+
+<head>
+    <link rel="stylesheet" href="{% static 'cdc/style.css' %}">
+    <title>
+        Welcome to CDC!
+    </title>
+</head>
+<body>
+    <div class="top">
+        <header class="">
+            <h1>Welcome to CDC Title</h1>
+        </header>
+    </div>
+    <div id="nav">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#two">Testimonials</a></li>
+            <li><a href="#three">Contact Us</a></li>
+            <li><a href="#four">About</a></li>
+            <li><a href="{% url 'cdc:logout' %}">Log Out</a></li>
+        </ul>
+    </div>
+    <br/><br/>
+    <div id="account">
+        Welcome {{ user.siteuser.company }}!
+    </div>
+</body>
