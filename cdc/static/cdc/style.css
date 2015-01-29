@@ -91,14 +91,21 @@ body {
   height: 70%;
 }
 
-#sections .item {
-  margin: 3px;
+#slideshow {
+    margin: 50px auto;
+    position: relative;
+    width: 560px;
+    height: 440px;
+    padding: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
 
-#sections .item img {
-  display: block;
-  width: 100%;
-  height: auto;
+#slideshow > div {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
 }
 
 #login {
@@ -111,26 +118,6 @@ body {
 
 #login form {
   text-align: center;
-}
-
-#one {
-  background: url('images/fountain.jpg') no-repeat top;
-  height: 990px;
-}
-
-#two {
-  background: url('images/city_hall.jpg') no-repeat top;
-  height: 972;
-}
-
-#three {
-  background: url('images/penn_paper.jpg') no-repeat top;
-  height: 1594px;
-}
-
-#four {
-  background: url('images/hall.jpg') no-repeat top;
-  height: 1704px;
 }
 
 #account {
