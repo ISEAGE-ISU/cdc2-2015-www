@@ -17,11 +17,15 @@
   width: 170px;
   font-weight: bold;
   color: #FFFFFF;
-  background-color: #a5a92d;
+  background-color: #CC6600;
   text-align: center;
   padding: 9px;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+#nav a:visited {
+  background-color: #CC6600;
 }
 
 #nav a:hover, a:active {
@@ -36,12 +40,12 @@
 }
 
 #nav2 li {
- # float: left;
+
 }
 
 #nav2 a:link, a:visited {
   display: block;
-  width: 100px;
+  width: 15%;
   font-weight: bold;
   font-size: 12px;
   color: #FFFFFF;

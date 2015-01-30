@@ -1,9 +1,9 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from models import SiteUser, LoginSession
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import UploadFileForm
-from .actions import handle_uploaded_file, is_logged_in
+from .actions import handle_uploaded_file, is_logged_in, get_user
 
 def index(request):
   if request.GET.get('logout', False):
@@ -47,26 +47,37 @@ def login(request):
     return render(request, 'cdc/login.html')
 
 def logout(request):
-  return HttpResponseRedirect('../?logout=true')
+  response = redirect('../?logout=true')
+  response.delete_cookie('secret_token')
+  return response
 
 def account_home(request):
   if is_logged_in(request):
-    session = LoginSession.objects.get(token=request.COOKIES.get('secret_token', False))
-    user = SiteUser.objects.get(user=User.objects.get(username=session.user))
+    user = get_user(request)
     page = request.GET.get('page', False)
-    context = { 'user' : user.company, 'page' : page }
+    context = { 'user' : user.siteuser.company, 'page' : page }
     return render(request, 'cdc/account.html', context)
   return HttpResponseRedirect('cdc:login')
 
 def upload(request):
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            handle_uploaded_file(request.FILES['file'], request.POST['title'])
-            return HttpResponseRedirect('success')
-    else:
-        form = UploadFileForm()
-    return render_to_response('cdc/upload.html', {'form': form})
+  user = get_user(request)
+  if request.method == 'POST':
+    form = UploadFileForm(request.POST, request.FILES)
+    if form.is_valid():
+      handle_uploaded_file(request.FILES['file'], request.POST['title'], user)
+      return HttpResponseRedirect('success')
+  else:
+    form = UploadFileForm()
+  return render_to_response('cdc/upload.html', {'form': form})
 
 def success(request):
   return render(request, 'cdc/success.html')
+
+def filings(request):
+  user = get_user(request)
+
+def warnings(request):
+  return None
+
+def reports(request):
+  return None
