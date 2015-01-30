@@ -3,6 +3,7 @@ from models import SiteUser, LoginSession
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import UploadFileForm
+from .actions import handle_uploaded_file, is_logged_in
 
 def index(request):
   if request.GET.get('logout', False):
@@ -11,8 +12,8 @@ def index(request):
   return render(request, 'cdc/index.html')
 
 def login(request):
-  if request.user.is_authenticated():
-    return render(request, 'cdc/account.html')
+  if is_logged_in(request):
+    return HttpResponseRedirect('home')
   elif request.POST.get('next', False) and (not request.POST.get('account', False) or not request.POST.get('company', False) or not request.POST.get('pin', False)):
     context = { 'error' : "Please fill out all fields before submitting." }
     return render(request, 'cdc/login.html', context)
@@ -49,26 +50,23 @@ def logout(request):
   return HttpResponseRedirect('../?logout=true')
 
 def account_home(request):
-  if LoginSession.objects.filter(token=request.COOKIES.get('secret_token', False)).exists():
+  if is_logged_in(request):
     session = LoginSession.objects.get(token=request.COOKIES.get('secret_token', False))
-    if User.objects.filter(username=session.user).exists():
-      user = SiteUser.objects.get(user=User.objects.get(username=session.user))
-      page = request.GET.get('page', False)
-      context = { 'user' : user.company, 'page' : page }
-      return render(request, 'cdc/account.html', context)
-  return render(request, 'cdc/account.html')
+    user = SiteUser.objects.get(user=User.objects.get(username=session.user))
+    page = request.GET.get('page', False)
+    context = { 'user' : user.company, 'page' : page }
+    return render(request, 'cdc/account.html', context)
+  return HttpResponseRedirect('cdc:login')
 
 def upload(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             handle_uploaded_file(request.FILES['file'], request.POST['title'])
-            return HttpResponseRedirect('home')
+            return HttpResponseRedirect('success')
     else:
         form = UploadFileForm()
     return render_to_response('cdc/upload.html', {'form': form})
 
-def handle_uploaded_file(f, title):
-    with open('uploads/' + title, 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
+def success(request):
+  return render(request, 'cdc/success.html')

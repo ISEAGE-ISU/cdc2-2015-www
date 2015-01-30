@@ -36,19 +36,19 @@
 }
 
 #nav2 li {
-  float: left;
+ # float: left;
 }
 
 #nav2 a:link, a:visited {
   display: block;
-  width: 100x;
+  width: 100px;
   font-weight: bold;
+  font-size: 12px;
   color: #FFFFFF;
   background-color: #FFCC00;
   text-align: center;
   padding: 9px;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 #nav2 a:visited {
@@ -163,5 +163,6 @@ body {
 }
 
 #account iframe {
- text-color: yellow;
+  float: left;
+  text-color: yellow;
 }
