@@ -11,6 +11,15 @@ def index(request):
     return render(request, 'cdc/index.html', context)
   return render(request, 'cdc/index.html')
 
+def contact(request):
+  return render(request, 'cdc/contact.html')
+
+def about(request):
+  return render(request, 'cdc/about.html')
+
+def testimonials(request):
+  return render(request, 'cdc/testimonials.html')
+
 def login(request):
   if is_logged_in(request):
     return HttpResponseRedirect('home')
