@@ -3,7 +3,7 @@ from models import SiteUser, LoginSession
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import UploadFileForm
-from .actions import handle_uploaded_file, is_logged_in, get_user
+from .actions import *
 
 def index(request):
   if request.GET.get('logout', False):
@@ -75,6 +75,13 @@ def success(request):
 
 def filings(request):
   user = get_user(request)
+  files = list_files(user, '/incoming/')
+  return render(request, 'cdc/files.html', { 'files' : files, 'user' : user, 'mode' : 'incoming' })
+
+def reports(request):
+  user = get_user(request)
+  files = list_files(user, '/outgoing/')
+  return render(request, 'cdc/files.html', { 'files' : files, 'user' : user, 'mode' : 'outgoing' })
 
 def warnings(request):
   return None

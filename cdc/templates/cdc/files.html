@@ -1,0 +1,10 @@
+<html>
+    {% load staticfiles %}
+    {% if files %}
+    {% for file in files %}
+    <a href="/uploads/{{ user }}/{{ mode }}/{{ file }}">{{ file }}</a>
+    {% endfor %}
+    {% else %}
+    <p>There are no files here yet!</p>
+    {% endif %}
+</html>

@@ -1,7 +1,6 @@
 from models import LoginSession, SiteUser
 import os
 from os import listdir
-from os.path import isfile, join
 from django.contrib.auth.models import User
 
 def handle_uploaded_file(f, title, user):
@@ -20,5 +19,9 @@ def get_user(request):
     session = LoginSession.objects.get(token=request.COOKIES.get('secret_token', False))
     return SiteUser.objects.get(user=User.objects.get(username=session.user)).user
 
-def list_files(request):
-  return None
+def list_files(account, mode):
+  targetdir = 'uploads/' + account.__str__() + mode
+  if os.path.exists(targetdir):
+    return [ f for f in listdir(targetdir) ]
+  else:
+    return False
