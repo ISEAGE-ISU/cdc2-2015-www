@@ -85,6 +85,3 @@ def reports(request):
 
 def warnings(request):
   return None
-
-def reports(request):
-  return None
