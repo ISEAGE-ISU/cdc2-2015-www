@@ -10,7 +10,7 @@
     </style>
     {% if files %}
     {% for file in files %}
-        <a href="/uploads/{{ user }}/{{ mode }}/{{ file }}">{{ file }}</a>
+    <a href="/uploads/{{ user }}/{{ mode }}/{{ file }}">{{ file }}</a><br/>
     {% endfor %}
     {% else %}
     <p>There are no files here yet!</p>

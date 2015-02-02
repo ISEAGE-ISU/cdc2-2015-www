@@ -1,5 +1,14 @@
 <html>
-    File uploaded successfully!
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        a {
+            color: white;
+        }
+    </style>
+    File uploaded successfully!<br/>
     <a href="{% url 'cdc:upload' %}">Upload more files</a>
     <a href="{% url 'cdc:filings' %}">View your uploaded files</a>
 </html>
