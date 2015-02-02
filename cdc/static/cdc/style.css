@@ -1,19 +1,23 @@
+#nav {
+  list-style:none;
+  margin:0;
+  padding:0;
+  text-align:center;
+}
+
 #nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0px;
   overflow: hidden;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 #nav li {
-  float: left;
+  display:inline;
 }
 
 #nav a:link, a:visited {
-  display: block;
+  display: inline-block;
   width: 170px;
   font-weight: bold;
   color: #FFFFFF;
