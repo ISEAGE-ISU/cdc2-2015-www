@@ -32,9 +32,10 @@
             <li><a href="?page=filings">Recent Filings</a></li>
             <li><a href="?page=reports">Reports</a></li>
         </ul>
-        </div>
-        {% if page %}<br/>
+        {% if page %}
+        {{ page }}<br/>
         <iframe src="{{ page }}" width="500" height="200" seamless></iframe>
         {% endif %}
+        </div>
     </div>
 </body>
