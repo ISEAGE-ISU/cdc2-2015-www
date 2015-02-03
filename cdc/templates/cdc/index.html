@@ -7,8 +7,8 @@
     </title>
 </head>
 <body>{% if script %}
-        <script>alert("You have been successfully logged out. Have a nice day!");</script>
-      {% endif %}
+    <script>alert("You have been successfully logged out. Have a nice day!");</script>
+    {% endif %}
     <div class="top">
         <header class="">
             <h1>Welcome to CDC Title</h1>
@@ -23,38 +23,58 @@
             <li><a href="{% url 'cdc:login' %}">Log In</a></li>
         </ul>
     </div>
+    <div class="bar">
+        <div class="section">
+            This company is so great. The reason we do the things we do is because we do them, and we do them great. There is no doubt as to the excellence held within.
+            Without people like this working so hard, it is not likely that others on the internet would be able to succeed. In fact, there is something about people who
+            are truly capable of working this hard. It is so amazing that the foundation of the internet completely depended on their successes. With our success, people
+            in the future are much more likely to become successful if they try.
+        </div>
+        <div class="section">
+            Because true excellence is not to be taken for granted, it is only possible that the best of the best make it past the most complicated and challenging challenges in
+            the world through hard work, perseverence, and intelligence, only to be risen above all as the sun rises unquestionably every single day of the week, month, and of course, year.
+        </div>
+    </div>
     <script src="{% static 'cdc/jquery.min.js' %}"></script>
     <script>
-		$(function() {
+        $(function() {
 
-			$("#slideshow > div:gt(0)").hide();
+            $("#slideshow > div:gt(0)").hide();
 
-			setInterval(function() {
-			  $('#slideshow > div:first')
-			    .fadeOut(1000)
-			    .next()
-			    .fadeIn(1000)
-			    .end()
-			    .appendTo('#slideshow');
-			},  6000);
+            setInterval(function() {
+                $('#slideshow > div:first')
+                .fadeOut(1000)
+                .next()
+                .fadeIn(1000)
+                .end()
+                .appendTo('#slideshow');
+            },  6000);
 
-		});
-    </script><br/>
+        });
+    </script>
     <div class="center">
-    <div id="slideshow">
-   <div>
-      <img src="{% static 'cdc/images/fountain.jpg' %}" width="560" height="440">
-   </div>
-   <div>
-     <img src="{% static 'cdc/images/penn_paper.jpg' %}" width="560" height="440">
-   </div>
-   <div>
-     <img src="{% static 'cdc/images/city_hall.jpg' %}" width="560" height="440">
-   </div>
-   <div>
-     <img src="{% static 'cdc/images/hall.jpg' %}" width="560" height="440">
-   </div>
+        <div id="slideshow">
+            <div>
+                <img src="{% static 'cdc/images/fountain.jpg' %}" width="560" height="440">
+            </div>
+            <div>
+                <img src="{% static 'cdc/images/penn_paper.jpg' %}" width="560" height="440">
+            </div>
+            <div>
+                <img src="{% static 'cdc/images/city_hall.jpg' %}" width="560" height="440">
+            </div>
+            <div>
+                <img src="{% static 'cdc/images/hall.jpg' %}" width="560" height="440">
+            </div>
+        </div>
+    </div>
+    <div class="bar">
+         <div class="section">
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit massa vel mauris sollicitudin dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus fringilla hendrerit lectus nec vehicula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In faucibus, risus eu volutpat pellentesque, massa felis feugiat velit, nec mattis felis elit a eros. Cras convallis sodales orci, et pretium sapien egestas quis. Donec tellus leo, scelerisque in facilisis a, laoreet vel quam. Suspendisse arcu nisl, tincidunt a vulputate ac, feugiat vitae leo. Integer hendrerit orci id metus venenatis in luctus tellus convallis. Mauris posuere, nisi vel vehicula pellentesque, libero lacus egestas ante, a bibendum mauris mi ut diam. Duis arcu odio, tincidunt eu dictum interdum, sagittis quis dui.
+        </div>
+        <div class="section">
+            Sed id dui dolor, eu consectetur dui. Etiam commodo convallis laoreet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus vel sem at sapien interdum pretium. Sed porttitor, odio in blandit ornare, arcu risus pulvinar ante, a gravida augue justo sagittis ante. Sed mattis consectetur metus quis rutrum. Phasellus ultrices nisi a orci dignissim nec rutrum turpis semper. Donec tempor libero ut nisl lacinia vel dignissim lacus tristique. Etiam accumsan velit in quam laoreet sollicitudin. Mauris euismod lacus ut magna placerat ac molestie augue consequat.
+        </div>
+    </div>
 </div>
-    </div>
-    </div>
 </body>

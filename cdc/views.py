@@ -37,6 +37,7 @@ def login(request):
         siteuser = SiteUser.objects.get(company=company, user=User.objects.get(username=account))
         # if the user supplied the correct password
         if siteuser.user.check_password(pin):
+          # Bad things can happen if this is the first session
           try:
             token = (LoginSession.objects.all().order_by('pk').reverse()[0].pk + 19) * 14123
           except IndexError:
