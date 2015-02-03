@@ -67,7 +67,7 @@ def account_home(request):
     page = request.GET.get('page', False)
     context = { 'user' : user.siteuser.company, 'page' : page }
     return render(request, 'cdc/account.html', context)
-  return HttpResponseRedirect('cdc:login')
+  return HttpResponseRedirect('login')
 
 def upload(request):
   user = get_user(request)
