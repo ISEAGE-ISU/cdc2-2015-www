@@ -9,9 +9,11 @@
         }
     </style>
     {% if files %}
+    <ol>
     {% for file in files %}
-    <a href="/uploads/{{ user }}/{{ mode }}/{{ file }}">{{ file }}</a><br/>
+        <li><a href="/uploads/{{ user }}/{{ mode }}/{{ file }}">{{ file }}</a></li>
     {% endfor %}
+    </ol>
     {% else %}
     <p>There are no files here yet!</p>
    {% endif %}
