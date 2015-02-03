@@ -1,2 +1,2 @@
 # isucdc2-2015-www
-Django webapp for the spring 2015 Cyber Defense Competition at ISU.
+Insecure Django webapp for the Spring 2015 Cyber Defense Competition at ISU.
