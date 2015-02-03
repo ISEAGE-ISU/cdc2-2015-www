@@ -172,7 +172,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 55%;
-  height: 70%;
+  height: 100%;
   border: solid;
   padding 20px;
   color: yellow;
@@ -181,11 +181,6 @@ body {
 
 #account iframe {
   float: left;
-}
-
-#files {
-  text-color: yellow;
-  background-color: red;
 }
 
 #contact {

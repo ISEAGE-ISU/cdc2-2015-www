@@ -32,10 +32,20 @@
             <li><a href="?page=filings">Recent Filings</a></li>
             <li><a href="?page=reports">Reports</a></li>
         </ul>
+        </div>
         {% if page %}
-        {{ page }}<br/>
+            <h3>
+            {% if page == "filings" %}
+            Recent Filings
+            {% elif page == "reports" %}
+            Reports
+            {% elif page == "upload" %}
+            Upload Documentation
+            {% elif page == "warnings" %}
+            Flags & Warnings
+            {% endif %}
+            </h3>
         <iframe src="{{ page }}" width="500" height="200" seamless></iframe>
         {% endif %}
-        </div>
     </div>
 </body>
