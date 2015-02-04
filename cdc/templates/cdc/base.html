@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'cdc/style.css' %}">
+    <title>
+        Welcome to CDC!
+    </title>
+</head>
+<body>
+    <div class="top">
+        <header class="">
+            <h1>Welcome to CDC Title</h1>
+        </header>
+    </div>
+    <div id="nav">
+        <ul>
+            <li><a href="{% url 'cdc:index' %}">Home</a></li>
+            <li><a href="{% url 'cdc:testimonials' %}">Testimonials</a></li>
+            <li><a href="{% url 'cdc:contact' %}">Contact Us</a></li>
+            <li><a href="{% url 'cdc:about' %}">About</a></li>
+            {% block login %}<li><a href="{% url 'cdc:login' %}">Log In</a></li>{% endblock %}
+        </ul>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

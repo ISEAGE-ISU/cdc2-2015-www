@@ -1,51 +1,31 @@
+{% extends 'cdc/base.html' %}
 {% load staticfiles %}
-<meta charset="UTF-8">
-
-<head>
-    <link rel="stylesheet" href="{% static 'cdc/style.css' %}">
-    <title>
-        Welcome to CDC!
-    </title>
-</head>
-<body>
-    <div class="top">
-        <header class="">
-            <h1>Welcome to CDC Title</h1>
-        </header>
-    </div>
-    <div id="nav">
-        <ul>
-            <li><a href="{% url 'cdc:index' %}">Home</a></li>
-            <li><a href="{% url 'cdc:testimonials' %}">Testimonials</a></li>
-            <li><a href="{% url 'cdc:contact' %}">Contact Us</a></li>
-            <li><a href="{% url 'cdc:about' %}">About</a></li>
-            <li><a href="{% url 'cdc:logout' %}">Log Out</a></li>
-        </ul>
-    </div>
-    <br/><br/>
-    <div id="account">
-        <h2>Welcome {{ user }}!</h2>
-        <div id="nav2">
+{% block login %}<li><a href="{% url 'cdc:logout' %}">Log Out</a></li>{% endblock %}
+{% block content %}
+<br/><br/>
+<div id="account">
+    <h2>Welcome {{ user }}!</h2>
+    <div id="nav2">
         <ul>
             <li><a href="?page=upload">Upload Documentation</a></li>
             <li><a href="?page=warnings">Flags & Warnings</a></li>
             <li><a href="?page=filings">Recent Filings</a></li>
             <li><a href="?page=reports">Reports</a></li>
         </ul>
-        </div>
-        {% if page %}
-            <h3>
-            {% if page == "filings" %}
-            Recent Filings
-            {% elif page == "reports" %}
-            Reports
-            {% elif page == "upload" %}
-            Upload Documentation
-            {% elif page == "warnings" %}
-            Flags & Warnings
-            {% endif %}
-            </h3>
-        <iframe src="{{ page }}" width="500" height="200" seamless></iframe>
-        {% endif %}
     </div>
-</body>
+    {% if page %}
+    <h3>
+        {% if page == "filings" %}
+        Recent Filings
+        {% elif page == "reports" %}
+        Reports
+        {% elif page == "upload" %}
+        Upload Documentation
+        {% elif page == "warnings" %}
+        Flags & Warnings
+        {% endif %}
+    </h3>
+    <iframe src="{{ page }}" seamless></iframe>
+    {% endif %}
+</div>
+{% endblock %}

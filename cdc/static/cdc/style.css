@@ -45,18 +45,19 @@
   overflow: hidden;
 }
 
-#nav2 li {
-
+#nav2 {
+  float: left;
+  padding-left: 30px;
+  padding-right: 40px;
 }
 
 #nav2 a:link, a:visited {
   display: block;
-  width: 15%;
+  width: 100%;
   font-weight: bold;
   font-size: 12px;
   color: #FFFFFF;
   background-color: #FFCC00;
-  text-align: center;
   padding: 9px;
   text-decoration: none;
 }
@@ -77,13 +78,14 @@
 
 body {
   background-color: #424242;
+  height: 500px;
 }
 
 .section {
   border: solid;
   border-width: 1px;
   border-color: #a5a92d;
-  color: yellow;
+  color: #DADADA;
   padding: 5px;
   margin-bottom: 5px;
 }
@@ -94,7 +96,7 @@ body {
   margin-left: 1.5%;
   background-color: #323232;
   width: 14%;
-  font-size: 12px;
+  font-size: 100%;
   color: yellow;
 }
 
@@ -121,6 +123,7 @@ body {
 }
 
 .center {
+  float: left;
   border-width: 1px;
   margin-left: auto;
   margin-right: auto;
@@ -142,8 +145,8 @@ body {
 #slideshow {
     margin: 50px auto;
     position: relative;
-    width: 560px;
-    height: 440px;
+    width: 65%;
+    height: 550px;
     padding: 10px;
     box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
@@ -171,16 +174,21 @@ body {
 #account {
   margin-left: auto;
   margin-right: auto;
-  width: 55%;
+  width: 45%;
   height: 100%;
   border: solid;
-  padding 20px;
   color: yellow;
   padding: 30px;
 }
 
 #account iframe {
   float: left;
+  width: 35%;
+  height: 50%;
+}
+
+#account h2 {
+  text-align: center;
 }
 
 #contact {

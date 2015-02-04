@@ -1,37 +1,14 @@
+{% extends 'cdc/base.html' %}
 {% load staticfiles %}
-<meta charset="UTF-8">
-<head>
-    <link rel="stylesheet" href="{% static 'cdc/style.css' %}">
-    <title>
-        Welcome to CDC!
-    </title>
-</head>
-<body>{% if script %}
-        <script>alert("You have been successfully logged out. Have a nice day!");</script>
-      {% endif %}
-    <div class="top">
-        <header class="">
-            <h1>Welcome to CDC Title</h1>
-        </header>
+{% block content %}
+<div id="contact">
+    <h2>Contact Us</h2>
+    <i>Feel free to contact us with any concerns or complaints, and we will do our best to help you.</i>
+    <p><strong>Main Headquarters</strong></p>
+    <p>4447 Common Ground Earth-Drive-Street Road</p>
+    <p>Topoftheworld, Kansas 71423</p>
+    <p>Main: (123) 456-7890</p>
+    <p>Fax: (098) 765-4321</p>
+    <p><a href="mailto:">contact@company.com</a>
     </div>
-    <div id="nav">
-        <ul>
-            <li><a href="{% url 'cdc:index' %}">Home</a></li>
-            <li><a href="{% url 'cdc:testimonials' %}">Testimonials</a></li>
-            <li><a href="{% url 'cdc:contact' %}">Contact Us</a></li>
-            <li><a href="{% url 'cdc:about' %}">About</a></li>
-            <li><a href="{% url 'cdc:login' %}">Log In</a></li>
-        </ul>
-    </div>
-    <div id="contact">
-        <h2>Contact Us</h2>
-        <i>Feel free to contact us with any concerns or complaints, and we will do our best to help you.</i>
-        <p><strong>Main Headquarters</strong></p>
-        <p>4447 Common Ground Earth-Drive-Street Road</p>
-        <p>Topoftheworld, Kansas 71423</p>
-        <p>Main: (123) 456-7890</p>
-        <p>Fax: (098) 765-4321</p>
-        <p><a href="mailto:">contact@company.com</a>
-    </div>
-
-</body>
+{% endblock %}

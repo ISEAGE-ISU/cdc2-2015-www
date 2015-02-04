@@ -1,28 +1,9 @@
+{% extends 'cdc/base.html' %}
 {% load staticfiles %}
-<meta charset="UTF-8">
-<head>
-    <link rel="stylesheet" href="{% static 'cdc/style.css' %}">
-    <title>
-        Welcome to CDC!
-    </title>
-</head>
-<body>{% if script %}
+{% if script %}
     <script>alert("You have been successfully logged out. Have a nice day!");</script>
     {% endif %}
-    <div class="top">
-        <header class="">
-            <h1>Welcome to CDC Title</h1>
-        </header>
-    </div>
-    <div id="nav">
-        <ul>
-            <li><a href="{% url 'cdc:index' %}">Home</a></li>
-            <li><a href="{% url 'cdc:testimonials' %}">Testimonials</a></li>
-            <li><a href="{% url 'cdc:contact' %}">Contact Us</a></li>
-            <li><a href="{% url 'cdc:about' %}">About</a></li>
-            <li><a href="{% url 'cdc:login' %}">Log In</a></li>
-        </ul>
-    </div>
+{% block content %}
     <div class="bar">
         <div class="section">
             This company is so great. The reason we do the things we do is because we do them, and we do them great. There is no doubt as to the excellence held within.
@@ -55,16 +36,16 @@
     <div class="center">
         <div id="slideshow">
             <div>
-                <img src="{% static 'cdc/images/fountain.jpg' %}" width="560" height="440">
+                <img src="{% static 'cdc/images/fountain.jpg' %}" width="100%" height="100%">
             </div>
             <div>
-                <img src="{% static 'cdc/images/penn_paper.jpg' %}" width="560" height="440">
+                <img src="{% static 'cdc/images/penn_paper.jpg' %}" width="100%" height="100%">
             </div>
             <div>
-                <img src="{% static 'cdc/images/city_hall.jpg' %}" width="560" height="440">
+                <img src="{% static 'cdc/images/city_hall.jpg' %}" width="100%" height="100%">
             </div>
             <div>
-                <img src="{% static 'cdc/images/hall.jpg' %}" width="560" height="440">
+                <img src="{% static 'cdc/images/hall.jpg' %}" width="100%" height="100%">
             </div>
         </div>
     </div>
@@ -76,5 +57,4 @@
             Sed id dui dolor, eu consectetur dui. Etiam commodo convallis laoreet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus vel sem at sapien interdum pretium. Sed porttitor, odio in blandit ornare, arcu risus pulvinar ante, a gravida augue justo sagittis ante. Sed mattis consectetur metus quis rutrum. Phasellus ultrices nisi a orci dignissim nec rutrum turpis semper. Donec tempor libero ut nisl lacinia vel dignissim lacus tristique. Etiam accumsan velit in quam laoreet sollicitudin. Mauris euismod lacus ut magna placerat ac molestie augue consequat.
         </div>
     </div>
-</div>
-</body>
+{% endblock %}
