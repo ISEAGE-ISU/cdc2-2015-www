@@ -2,7 +2,10 @@
 {% load staticfiles %}
 {% block content %}
 <div id="contact">
-    <p>Comments:{{ form.text }}</p>
-    <p>Your name:{{ form.postedby}}</p>
+    <form action="{% url 'cdc:form' %}" method="post">
+        <p>Comments:</p><p>{{ form.text }}</p>
+        <p>Your name: {{ form.postedby}}</p>
+        <input type="submit" value="Submit">
+    </form><br/>
 </div>
 {% endblock %}

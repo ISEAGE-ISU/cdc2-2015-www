@@ -84,9 +84,9 @@ def upload(request):
 def form(request):
   if request.method == 'POST':
     form = TestimonialForm(request.POST, request.FILES)
-    if form.is_valid():
-      entry = Testimonial(text=request.POST['text'], postedby=request.POST['postedby'])
-      return HttpResponseRedirect('testimonials')
+    entry = Testimonial(text=request.POST['text'], postedby=request.POST['postedby'])
+    entry.save()
+    return HttpResponseRedirect('testimonials')
   else:
     form = TestimonialForm()
   return render_to_response('cdc/form.html', {'form': form})
