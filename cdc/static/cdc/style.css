@@ -202,3 +202,15 @@ body {
   text-align: center;
   width: 72%;
 }
+
+#contact a {
+  color: #FFFFFF;
+}
+
+#contact a:visited {
+  color: #FFFFFF;
+}
+
+#contact a:hover, a:active {
+  color: #FFFFFF;
+}

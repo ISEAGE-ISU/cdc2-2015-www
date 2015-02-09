@@ -14,3 +14,9 @@ class LoginSession(models.Model):
     return self.token
   token = models.CharField(default='', max_length=64)
   user = models.CharField(default='', max_length=100)
+
+class Testimonial(models.Model):
+  def __str__(self):
+    return self.postedby
+  text = models.TextField(default='', max_length=1000)
+  postedby = models.CharField(default='', max_length=1000)

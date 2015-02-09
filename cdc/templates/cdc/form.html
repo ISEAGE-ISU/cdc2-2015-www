@@ -1,0 +1,8 @@
+{% extends 'cdc/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="contact">
+    <p>Comments:{{ form.text }}</p>
+    <p>Your name:{{ form.postedby}}</p>
+</div>
+{% endblock %}

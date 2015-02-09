@@ -1,0 +1,12 @@
+{% extends 'cdc/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div id="contact">
+    <a href="form">Have something positive to say? Let us know!</a>
+    {% for entry in testimonials %}
+    <p>"{{ entry.text }}" --{{ entry.postedby}}</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

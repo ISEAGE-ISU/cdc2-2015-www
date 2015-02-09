@@ -1,8 +1,8 @@
 from django.shortcuts import render, render_to_response, redirect
-from models import SiteUser, LoginSession
+from models import SiteUser, LoginSession, Testimonial
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import UploadFileForm
+from .forms import *
 from .actions import *
 
 def index(request):
@@ -18,7 +18,7 @@ def about(request):
   return render(request, 'cdc/about.html')
 
 def testimonials(request):
-  return render(request, 'cdc/testimonials.html')
+  return render(request, 'cdc/testimonials.html', { 'testimonials' : Testimonial.objects.all() })
 
 def login(request):
   if is_logged_in(request):
@@ -39,6 +39,7 @@ def login(request):
         if siteuser.user.check_password(pin):
           # Bad things can happen if this is the first session
           try:
+            # Generate a secret session token for the user
             token = (LoginSession.objects.all().order_by('pk').reverse()[0].pk + 19) * 14123
           except IndexError:
             token = 19 * 14123
@@ -79,6 +80,16 @@ def upload(request):
   else:
     form = UploadFileForm()
   return render_to_response('cdc/upload.html', {'form': form})
+
+def form(request):
+  if request.method == 'POST':
+    form = TestimonialForm(request.POST, request.FILES)
+    if form.is_valid():
+      entry = Testimonial(text=request.POST['text'], postedby=request.POST['postedby'])
+      return HttpResponseRedirect('testimonials')
+  else:
+    form = TestimonialForm()
+  return render_to_response('cdc/form.html', {'form': form})
 
 def success(request):
   return render(request, 'cdc/success.html')
