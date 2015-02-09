@@ -5,7 +5,7 @@
 <div id="contact">
     <a href="form">Have something positive to say? Let us know!</a>
     {% for entry in testimonials %}
-    <p>"{{ entry.text }}" --{{ entry.postedby}}</p>
+    <p>"{{ entry.text|safe }}" --{{ entry.postedby|safe }}</p>
     {% endfor %}
 </div>
 
