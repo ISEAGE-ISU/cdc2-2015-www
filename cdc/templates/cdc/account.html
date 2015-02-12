@@ -4,7 +4,33 @@
 {% block content %}
 <br/><br/>
 <div id="account">
-    <h2>Welcome {{ user }}!</h2>
+    <h2>Welcome {{ user.siteuser.company }}!</h2>
+    {% if user.is_superuser %}
+    <strong>New Site User</strong>
+    <form action="{% url 'cdc:admin' %}" method="post">
+        <input type="text" name="company" placeholder="Company Name">
+        <input type="text" name="account" placeholder="Account #">
+        <input type="password" name="pin" size="4" maxlength="4" placeholder="PIN">
+        <input type="submit" value="Submit">
+        <input type="hidden" value="newuser">
+        <p style="font-size:11px">*Setting the company name as "Admin" will automatically make the user an admin.</p>
+    </form>
+    <strong>PIN Reset</strong>
+    <form action="{% url 'cdc:admin' %}" method="post">
+        <input type="text" name="account" placeholder="Account #">
+        <input type="password" name="pin" size="4" maxlength="4" placeholder="PIN">
+        <input type="submit" value="Submit">
+        <input type="hidden" value="pwreset">
+    </form>
+    <strong>Delete Site User</strong>
+    <form action="{% url 'cdc:admin' %}" method="post">
+        <input type="text" name="account" placeholder="Account #">
+        <input type="submit" value="Submit">
+        <input type="hidden" value="delete">
+    </form>
+    <strong>File Admin</strong>
+    <p><iframe src="filings" seamless></iframe></p>
+    {% else %}
     <div id="nav2">
         <ul>
             <li><a href="?page=upload">Upload Documentation</a></li>
@@ -13,6 +39,7 @@
             <li><a href="?page=reports">Reports</a></li>
         </ul>
     </div>
+    {% endif %}
     {% if page %}
     <h3>
         {% if page == "filings" %}

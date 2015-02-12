@@ -66,12 +66,12 @@ def account_home(request):
   if is_logged_in(request):
     user = get_user(request)
     page = request.GET.get('page', False)
-    context = { 'user' : user.siteuser.company, 'page' : page }
+    context = { 'user' : user, 'page' : page }
     return render(request, 'cdc/account.html', context)
   return HttpResponseRedirect('login')
 
 def upload(request):
-  user = get_user(request)
+  user = get_user(request).siteuser.company
   if request.method == 'POST':
     form = UploadFileForm(request.POST, request.FILES)
     if form.is_valid():
@@ -96,13 +96,19 @@ def success(request):
 
 def filings(request):
   user = get_user(request)
-  files = list_files(user, '/incoming/')
+  if user.is_superuser:
+    files = list_files('' ,'')
+  else:
+    files = list_files(user, '/incoming/')
   return render(request, 'cdc/files.html', { 'files' : files, 'user' : user, 'mode' : 'incoming' })
 
 def reports(request):
   user = get_user(request)
   files = list_files(user, '/outgoing/')
   return render(request, 'cdc/files.html', { 'files' : files, 'user' : user, 'mode' : 'outgoing' })
+
+def admin(request):
+  return None
 
 def warnings(request):
   return None

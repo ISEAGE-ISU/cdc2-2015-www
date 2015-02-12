@@ -10,6 +10,7 @@
     </style>
     {% if files %}
     <ol>
+        {{ user }}
     {% for file in files %}
         <li><a href="/uploads/{{ user }}/{{ mode }}/{{ file }}">{{ file }}</a></li>
     {% endfor %}
