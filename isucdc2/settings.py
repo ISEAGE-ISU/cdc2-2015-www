@@ -57,8 +57,8 @@ WSGI_APPLICATION = 'isucdc2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'root',
-        'USER': 'cdc',
+        'NAME': 'cdc',
+        'USER': 'root',
         'PASSWORD': 'cdc',
         'HOST': '',
     }
