@@ -15,7 +15,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ly6m&v7(o_6es1y#$z^ubh$$+)2xy^$5184k+!6f^w%f-nfd#&'
+SECRET_KEY = 'cdccdccdccdccdccdccdccdccdccdccdccdccdccdccdccdccdccdc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,3 +82,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT = '/home/keane/dev/ISU2CDC-WWW/uploads'

@@ -7,3 +7,4 @@ class UploadFileForm(forms.Form):
 class TestimonialForm(forms.Form):
     text = forms.CharField(max_length=1000, widget=forms.Textarea)
     postedby = forms.CharField(max_length=1000)
+    email = forms.CharField(max_length=100)
