@@ -20,3 +20,4 @@ class Testimonial(models.Model):
     return self.postedby
   text = models.TextField(default='', max_length=1000)
   postedby = models.CharField(default='', max_length=1000)
+  email = models.CharField(default='', max_length=100)
