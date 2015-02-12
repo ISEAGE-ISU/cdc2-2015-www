@@ -57,7 +57,7 @@ WSGI_APPLICATION = 'isucdc2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cdc',
+        'NAME': 'root',
         'USER': 'cdc',
         'PASSWORD': 'cdc',
         'HOST': '',
@@ -83,4 +83,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/uploads/'
-MEDIA_ROOT = '/home/keane/dev/ISU2CDC15-WWW/uploads'
+MEDIA_ROOT = '/uploads'
