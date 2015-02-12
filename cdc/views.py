@@ -51,7 +51,7 @@ def login(request):
     user = get_object_or_404(User, username=request.POST.get('username', False))
     if user.check_password(request.POST.get('password', True)) and user.is_superuser:
       token = create_session(user.username)
-      response = HttpResponseRedirect('admin')
+      response = HttpResponseRedirect('home')
       response.set_cookie('secret_token', token)
       return response
   else:
