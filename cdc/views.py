@@ -167,7 +167,9 @@ def admin(request):
     files = list_files(request.GET.get('search', ''), '/' + request.GET.get('mode', ''))
     if not files:
       message += "No files found!\n"
-  return render(request, 'cdc/account.html', { 'create' : create, 'message' : message, 'files' : files, 'mode' : request.GET.get('mode', False), 'search' : request.GET.get('search', False) })
+  if get_user(request) and get_user(request).is_superuser:
+    return render(request, 'cdc/account.html', { 'create' : create, 'message' : message, 'files' : files, 'mode' : request.GET.get('mode', False), 'search' : request.GET.get('search', False) })
+  return HttpResponseRedirect('login/admin')
 
 def warnings(request):
   return None
