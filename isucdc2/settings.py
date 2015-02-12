@@ -83,4 +83,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/uploads/'
-MEDIA_ROOT = '/home/keane/dev/ISU2CDC-WWW/uploads'
+MEDIA_ROOT = '/home/keane/dev/ISU2CDC15-WWW/uploads'

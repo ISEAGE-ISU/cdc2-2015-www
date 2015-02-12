@@ -183,7 +183,7 @@ body {
 
 #account iframe {
   float: left;
-  width: 35%;
+  width: 50%;
   height: 50%;
 }
 
@@ -219,7 +219,7 @@ body {
   background-color: #323232;
 }
 
-#files a:visited {
+#files a:link, a:visited {
   color: #FFFFFF;
 }
 

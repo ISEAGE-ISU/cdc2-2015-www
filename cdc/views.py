@@ -121,16 +121,16 @@ def admin(request):
     user = get_object_or_404(User, username=request.POST['account'])
     user.set_password(request.POST.get('pin', False))
     user.save()
-    message += 'Password successfully reset!'
+    message += 'Password successfully reset!\n'
   # Delete User
   if request.POST.get('delete', False):
     user = get_object_or_404(User, username=request.POST['account'])
     user.delete()
-    message += 'User successfully deleted!'
+    message += 'User successfully deleted!\n'
   # Create new site user
   if request.POST.get('newuser', False):
     if User.objects.filter(username=request.POST.get('account', False)).exists():
-      message += 'Error: User already exists in database.'
+      message += 'Error: User already exists in database.\n'
     else:
       user = User.objects.create_user(request.POST.get('account', False), '', request.POST.get('pin', False))
       siteuser = SiteUser(user=user, company=request.POST.get('company', False))
@@ -140,23 +140,30 @@ def admin(request):
       if not os.path.exists(targetdir):
         os.makedirs(targetdir + '/incoming')
         os.makedirs(targetdir + '/outgoing')
-      message += 'User successfully created!'
+      message += 'User successfully created!\n'
   # Create new admin
   if request.POST.get('newadmin', False):
     if User.objects.filter(username=request.POST.get('account', False)).exists():
-      message += 'Error: User already exists in database.'
+      message += 'Error: User already exists in database.\n'
     else:
       user = User.objects.create_user(request.POST.get('username', False), '', request.POST.get('password', False))
       user.is_superuser = True
       user.save()
       siteuser = SiteUser(user=user, company="Admin")
       siteuser.save()
-      message += 'Admin successfully created!'
+      message += 'Admin successfully created!\n'
+  # Delete a file
+  if request.GET.get('delete', False):
+    try:
+      os.remove(request.GET['delete'])
+      message += 'File \'' + request.GET['delete'] + '\' deleted!\n'
+    except OSError:
+      message += 'That file does not exist.\n'
   # List a user's files
   if request.GET.get('search', False):
     files = list_files(request.GET.get('search', ''), '/' + request.GET.get('mode', ''))
     if not files:
-      message += "No files found!"
+      message += "No files found!\n"
   return render(request, 'cdc/account.html', { 'create' : create, 'message' : message, 'files' : files, 'mode' : request.GET.get('mode', False), 'search' : request.GET.get('search', False) })
 
 def warnings(request):

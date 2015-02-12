@@ -1,5 +1,6 @@
 {% extends 'cdc/base.html' %}
 {% load staticfiles %}
+{% block title %}{% if user.is_superuser %}Admin Home{% else %}Account Home{% endif %}{% endblock %}
 {% block login %}<li><a href="{% url 'cdc:logout' %}">Log Out</a></li>{% endblock %}
 {% block content %}
 <br/><br/>
@@ -56,9 +57,10 @@
     </form>
     {% if files %}
     <div id="files">
+        <p>{{ search }}'s Files</p>
         <ol>
         {% for file in files %}
-            <li><a href="/uploads/{{ search }}/{{ mode }}/{{ file }}">{{ file }}</a><a href=</li>
+            <li><a href="/uploads/{{ search }}/{{ mode }}/{{ file }}">{{ file }}</a> <a href="?search={{ search }}&mode=incoming&delete=uploads/{{ search }}/{{ mode }}/{{ file }}" style="color: red">delete</a></li>
         {% endfor %}
         </ol>
     </div>
@@ -67,10 +69,9 @@
     <div id="nav2">
         <ul>
             <li><a href="?page=upload">Upload Documentation</a></li>
-            <li><a href="?page=warnings">Flags & Warnings</a></li>
             <li><a href="?page=filings">Recent Filings</a></li>
             <li><a href="?page=reports">Reports</a></li>
-            <li><a href="?page=loans">Loan Applications</a></li>
+            <li><a href="?page=loans">Loan Applications (NEW!)</a></li>
         </ul>
     </div>
     {% endif %}
@@ -82,8 +83,8 @@
         Reports
         {% elif page == "upload" %}
         Upload Documentation
-        {% elif page == "warnings" %}
-        Flags & Warnings
+        {% elif page == "loans" %}
+        Loan Application
         {% endif %}
     </h3>
     <iframe src="{{ page }}" seamless></iframe>
