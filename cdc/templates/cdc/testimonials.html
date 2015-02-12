@@ -3,7 +3,7 @@
 
 {% block content %}
 <div id="contact">
-    <a href="form">Have something positive to say? Let us know!</a>
+    <p><a href="form">Have something positive to say? Let us know!</a></p>
     {% for entry in testimonials %}
     <p>"{{ entry.text|safe }}" --{{ entry.postedby|safe }}</p>
     {% endfor %}
