@@ -6,30 +6,60 @@
 <div id="account">
     <h2>Welcome {{ user.siteuser.company }}!</h2>
     {% if user.is_superuser %}
+    <p style='font-color: white'>{{ message }}</p>
     <strong>New Site User</strong>
+    {% if newuser %}
     <form action="{% url 'cdc:admin' %}" method="post">
         <input type="text" name="company" placeholder="Company Name">
         <input type="text" name="account" placeholder="Account #">
         <input type="password" name="pin" size="4" maxlength="4" placeholder="PIN">
         <input type="submit" value="Submit">
-        <input type="hidden" value="newuser">
-        <p style="font-size:11px">*Setting the company name as "Admin" will automatically make the user an admin.</p>
+        <input type="hidden" name="newuser" value="newuser">
     </form>
+    {% elif newadmin %}
+    <form action="{% url 'cdc:admin' %}" method="post">
+        <input type="text" name="company" placeholder="Company Name">
+        <input type="text" name="account" placeholder="Account #">
+        <input type="password" name="pin" size="4" maxlength="4" placeholder="PIN">
+        <input type="submit" value="Submit">
+        <input type="hidden" name="newadmin" value="newadmin">
+    </form>
+    {% else %}
+    <form action="{% url 'cdc:admin' %}" method="get">
+        <input type="submit" name="new_user" value="New User">
+        <input type="submit" name="new_admin" value="New Admin">
+    {% endif %}
     <strong>PIN Reset</strong>
     <form action="{% url 'cdc:admin' %}" method="post">
         <input type="text" name="account" placeholder="Account #">
         <input type="password" name="pin" size="4" maxlength="4" placeholder="PIN">
         <input type="submit" value="Submit">
-        <input type="hidden" value="pwreset">
+        <input type="hidden" name="pwreset" value="pwreset">
     </form>
     <strong>Delete Site User</strong>
     <form action="{% url 'cdc:admin' %}" method="post">
         <input type="text" name="account" placeholder="Account #">
         <input type="submit" value="Submit">
-        <input type="hidden" value="delete">
+        <input type="hidden" name="delete" value="newuser">
     </form>
     <strong>File Admin</strong>
-    <p><iframe src="filings" seamless></iframe></p>
+    <form action="{% url 'cdc:admin' %}" method="get">
+        <input type="text" name="search" placeholder="Account #">
+        <select name="mode">
+            <option value="incoming">Filings</option>
+            <option value="outgoing">Reports</option>
+        </select>
+        <input type="submit" value="Search">
+    </form>
+    {% if files %}
+    <div id="files">
+        <ol>
+        {% for file in files %}
+            <li><a href="/uploads/{{ search }}/{{ mode }}/{{ file }}">{{ file }}</a></li>
+        {% endfor %}
+        </ol>
+    </div>
+    {% endif %}
     {% else %}
     <div id="nav2">
         <ul>
@@ -37,6 +67,7 @@
             <li><a href="?page=warnings">Flags & Warnings</a></li>
             <li><a href="?page=filings">Recent Filings</a></li>
             <li><a href="?page=reports">Reports</a></li>
+            <li><a href="?page=loans">Loan Applications</a></li>
         </ul>
     </div>
     {% endif %}
