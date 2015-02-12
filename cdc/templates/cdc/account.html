@@ -71,7 +71,7 @@
             <li><a href="?page=upload">Upload Documentation</a></li>
             <li><a href="?page=filings">Recent Filings</a></li>
             <li><a href="?page=reports">Reports</a></li>
-            <li><a href="?page=loans">Loan Applications (NEW!)</a></li>
+            <li><a href="?page=settings">Account Settings</a></li>
         </ul>
     </div>
     {% endif %}
@@ -83,8 +83,8 @@
         Reports
         {% elif page == "upload" %}
         Upload Documentation
-        {% elif page == "loans" %}
-        Loan Application
+        {% elif page == "settings" %}
+        Account Settings
         {% endif %}
     </h3>
     <iframe src="{{ page }}" seamless></iframe>

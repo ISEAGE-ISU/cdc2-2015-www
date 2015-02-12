@@ -60,6 +60,9 @@ def login(request):
 def login_admin(request):
   return render(request, 'cdc/admin.html')
 
+def settings(request):
+  return render(request, 'cdc/settings.html')
+
 def logout(request):
   response = redirect('../?logout=true')
   response.delete_cookie('secret_token')
