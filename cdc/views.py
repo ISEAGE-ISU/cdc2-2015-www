@@ -130,8 +130,8 @@ def admin(request):
       # Create the upload and download directories for the new user
       targetdir = 'uploads/' + user.username
       if not os.path.exists(targetdir):
-        os.makedirs(targetdir + '/incoming)
-        os.makedirs(targetdir + '/outgoing)
+        os.makedirs(targetdir + '/incoming')
+        os.makedirs(targetdir + '/outgoing')
       message += 'User successfully created!'
   if request.GET.get('search', False):
     files = list_files(request.GET.get('search', ''), request.GET.get('/' + 'mode' + '/', ''))
