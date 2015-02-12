@@ -4,30 +4,32 @@
 {% block content %}
 <br/><br/>
 <div id="account">
-    <h2>Welcome {{ user.siteuser.company }}!</h2>
+    <h2>{% if user.is_superuser %}Admin Panel -- {{ user.username }}{% else %}Welcome {{ user.siteuser.company }}!{% endif %}</h2>
     {% if user.is_superuser %}
     <p style='font-color: white'>{{ message }}</p>
+    {% if create == 'newuser' %}
     <strong>New Site User</strong>
-    {% if newuser %}
     <form action="{% url 'cdc:admin' %}" method="post">
         <input type="text" name="company" placeholder="Company Name">
         <input type="text" name="account" placeholder="Account #">
         <input type="password" name="pin" size="4" maxlength="4" placeholder="PIN">
         <input type="submit" value="Submit">
         <input type="hidden" name="newuser" value="newuser">
-    </form>
-    {% elif newadmin %}
+    </form><a href="admin"><button>Cancel</button></a></br>
+    {% elif create == 'newadmin' %}
+    <strong>New Admin User</strong>
     <form action="{% url 'cdc:admin' %}" method="post">
-        <input type="text" name="company" placeholder="Company Name">
-        <input type="text" name="account" placeholder="Account #">
-        <input type="password" name="pin" size="4" maxlength="4" placeholder="PIN">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
         <input type="submit" value="Submit">
         <input type="hidden" name="newadmin" value="newadmin">
     </form>
+    </form><a href="admin"><button>Cancel</button></a></br>
     {% else %}
+    <strong>User Creation</strong>
     <form action="{% url 'cdc:admin' %}" method="get">
-        <input type="submit" name="new_user" value="New User">
-        <input type="submit" name="new_admin" value="New Admin">
+        <input type="submit" name="user_button" value="New User">
+        <input type="submit" name="admin_button" value="New Admin">
     </form>
     {% endif %}
     <strong>PIN Reset</strong>
@@ -56,7 +58,7 @@
     <div id="files">
         <ol>
         {% for file in files %}
-            <li><a href="/uploads/{{ search }}/{{ mode }}/{{ file }}">{{ file }}</a></li>
+            <li><a href="/uploads/{{ search }}/{{ mode }}/{{ file }}">{{ file }}</a><a href=</li>
         {% endfor %}
         </ol>
     </div>

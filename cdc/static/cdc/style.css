@@ -218,3 +218,11 @@ body {
 #files {
   background-color: #323232;
 }
+
+#files a:visited {
+  color: #FFFFFF;
+}
+
+#files a:hover, a:active {
+  color: #FFFFFF;
+}

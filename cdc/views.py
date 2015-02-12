@@ -51,7 +51,7 @@ def login(request):
     user = get_object_or_404(User, username=request.POST.get('username', False))
     if user.check_password(request.POST.get('password', True)) and user.is_superuser:
       token = create_session(user.username)
-      response = HttpResponseRedirect('home')
+      response = HttpResponseRedirect('admin')
       response.set_cookie('secret_token', token)
       return response
   else:
@@ -111,15 +111,23 @@ def reports(request):
 def admin(request):
   message = ''
   files = None
+  create = None
+  if request.GET.get('user_button', False):
+    create = 'newuser'
+  elif request.GET.get('admin_button', False):
+    create = 'newadmin'
+  # Password reset
   if request.POST.get('pwreset', False):
     user = get_object_or_404(User, username=request.POST['account'])
     user.set_password(request.POST.get('pin', False))
     user.save()
     message += 'Password successfully reset!'
+  # Delete User
   if request.POST.get('delete', False):
     user = get_object_or_404(User, username=request.POST['account'])
     user.delete()
     message += 'User successfully deleted!'
+  # Create new site user
   if request.POST.get('newuser', False):
     if User.objects.filter(username=request.POST.get('account', False)).exists():
       message += 'Error: User already exists in database.'
@@ -133,11 +141,23 @@ def admin(request):
         os.makedirs(targetdir + '/incoming')
         os.makedirs(targetdir + '/outgoing')
       message += 'User successfully created!'
+  # Create new admin
+  if request.POST.get('newadmin', False):
+    if User.objects.filter(username=request.POST.get('account', False)).exists():
+      message += 'Error: User already exists in database.'
+    else:
+      user = User.objects.create_user(request.POST.get('username', False), '', request.POST.get('password', False))
+      user.is_superuser = True
+      user.save()
+      siteuser = SiteUser(user=user, company="Admin")
+      siteuser.save()
+      message += 'Admin successfully created!'
+  # List a user's files
   if request.GET.get('search', False):
-    files = list_files(request.GET.get('search', ''), request.GET.get('/' + 'mode' + '/', ''))
+    files = list_files(request.GET.get('search', ''), '/' + request.GET.get('mode', ''))
     if not files:
       message += "No files found!"
-  return render(request, 'cdc/account.html', { 'message' : message, 'files' : files, 'mode' : request.GET.get('mode', False), 'search' : request.GET.get('search', False) })
+  return render(request, 'cdc/account.html', { 'create' : create, 'message' : message, 'files' : files, 'mode' : request.GET.get('mode', False), 'search' : request.GET.get('search', False) })
 
 def warnings(request):
   return None
