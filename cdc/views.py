@@ -18,7 +18,13 @@ def about(request):
   return render(request, 'cdc/about.html')
 
 def testimonials(request):
-  return render(request, 'cdc/testimonials.html', { 'testimonials' : Testimonial.objects.all() })
+  if request.GET.get('remove', False):
+    entry = Testimonial.objects.get(postedby=request.GET['remove'])
+    entry.delete()
+  user = None
+  if is_logged_in(request):
+    user = get_user(request)
+  return render(request, 'cdc/testimonials.html', { 'testimonials' : Testimonial.objects.all(), 'user' : user })
 
 def login(request):
   if is_logged_in(request): # or is_admin(request):

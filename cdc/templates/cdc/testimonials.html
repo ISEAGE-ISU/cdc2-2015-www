@@ -5,7 +5,7 @@
 <div id="contact">
     <p><a href="form">Have something positive to say? Let us know!</a></p>
     {% for entry in testimonials %}
-    <p>"{{ entry.text|safe }}" --{{ entry.postedby|safe }}</p>
+    <p>"{{ entry.text|safe }}" --{{ entry.postedby|safe }}{% if user.is_superuser %} <a style="color: red" href="?remove={{ entry }}">delete</a>{% endif %}</p>
     {% endfor %}
 </div>
 
