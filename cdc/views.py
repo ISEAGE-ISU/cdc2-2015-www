@@ -80,6 +80,7 @@ def account_home(request):
     page = request.GET.get('page', False)
     success = request.GET.get('success', False)
     context = { 'user' : user, 'page' : page }
+    return HttpResponse(user)
     return render(request, 'cdc/account.html', context)
   return HttpResponseRedirect('login')
 
@@ -174,7 +175,7 @@ def admin(request):
     if not files:
       message += "No files found!\n"
   if get_user(request) and get_user(request).is_superuser:
-    return render(request, 'cdc/account.html', { 'create' : create, 'message' : message, 'files' : files, 'mode' : request.GET.get('mode', False), 'search' : request.GET.get('search', False) })
+    return render(request, 'cdc/account.html', { 'create' : create, 'message' : message, 'files' : files, 'mode' : request.GET.get('mode', False), 'search' : request.GET.get('search', False), 'user' : get_user(request) })
   return HttpResponseRedirect('login/admin')
 
 def warnings(request):
