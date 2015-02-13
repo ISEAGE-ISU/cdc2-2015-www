@@ -227,3 +227,11 @@ body {
 #files a:hover, a:active {
   color: #FFFFFF;
 }
+
+#panel {
+  float: left;
+}
+
+#userlist {
+  float: left;
+}
