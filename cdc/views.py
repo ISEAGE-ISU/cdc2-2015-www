@@ -80,7 +80,6 @@ def account_home(request):
     page = request.GET.get('page', False)
     success = request.GET.get('success', False)
     context = { 'user' : user, 'page' : page }
-    return HttpResponse(user)
     return render(request, 'cdc/account.html', context)
   return HttpResponseRedirect('login')
 
