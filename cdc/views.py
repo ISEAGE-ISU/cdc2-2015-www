@@ -181,9 +181,3 @@ def admin(request):
   if get_user(request) and get_user(request).is_superuser:
     return render(request, 'cdc/account.html', { 'users' : accounts, 'create' : create, 'message' : message, 'files' : files, 'mode' : request.GET.get('mode', False), 'search' : request.GET.get('search', False), 'user' : get_user(request) })
   return HttpResponseRedirect('login/admin')
-
-def warnings(request):
-  return None
-
-def loans(request):
-  return None
