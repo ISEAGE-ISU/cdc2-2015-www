@@ -148,7 +148,9 @@ def admin(request):
       targetdir = 'uploads/' + user.username
       if not os.path.exists(targetdir):
         os.makedirs(targetdir + '/incoming')
+        os.chmod(targetdir + '/incoming', 0777)
         os.makedirs(targetdir + '/outgoing')
+        os.chmod(targetdir + '/outgoing', 0777)
       message += 'User successfully created!\n'
   # Create new admin
   if request.POST.get('newadmin', False):
