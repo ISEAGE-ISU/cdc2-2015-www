@@ -121,6 +121,7 @@ def admin(request):
   message = ''
   files = None
   create = None
+  accounts = None
   if request.GET.get('user_button', False):
     create = 'newuser'
   elif request.GET.get('admin_button', False):
@@ -175,8 +176,10 @@ def admin(request):
     files = list_files(request.GET.get('search', ''), '/' + request.GET.get('mode', ''))
     if not files:
       message += "No files found!\n"
+  if request.GET.get('list_users', False):
+    accounts = User.objects.all()
   if get_user(request) and get_user(request).is_superuser:
-    return render(request, 'cdc/account.html', { 'create' : create, 'message' : message, 'files' : files, 'mode' : request.GET.get('mode', False), 'search' : request.GET.get('search', False), 'user' : get_user(request) })
+    return render(request, 'cdc/account.html', { 'users' : accounts, 'create' : create, 'message' : message, 'files' : files, 'mode' : request.GET.get('mode', False), 'search' : request.GET.get('search', False), 'user' : get_user(request) })
   return HttpResponseRedirect('login/admin')
 
 def warnings(request):
